@@ -1,0 +1,2 @@
+# simfwk2
+imFWK is a web-oriented framework. SimFWK is a php-oriented backend. SimFWK used the following technologies : PHP 7, PHPUnit, TypeScript, Sass and more... SimFWK is an open source-based application.
