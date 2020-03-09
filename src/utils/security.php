@@ -6,20 +6,23 @@ namespace SimFwk2\Utils;
  * Security's functions handler
  * 
  * @author Simon Cabos
- * @version 1.1.1
+ * @version 1.2.0
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
 final class Security {
 
-  use \SimFwk2\Factory\Singleton;
+  use \SimFwk2\Factory\Singleton, \SimFwk2\Factory\Thrower;
 
   /** @var string The initialization vector. */
   private $iv;
 
   private function __construct () {
-    $request = \SimFwk2\Http\Request::getInstance();
-    $this->iv = $request->dataSession("security.iv");
+    try {
+      $this->setIv();
+    } catch (SecurityException $e) {
+      exit($e->getMessage());
+    }
   }
 
   /**
@@ -60,4 +63,28 @@ final class Security {
     $key = openssl_random_pseudo_bytes(32);
     return $this->encryptAES($data, $key);
   }
+  
+  /**
+   * Assign the iv property from session.
+   * @throws \SimFwk2\Utils\SecurityException When the iv's session is missing.
+   */
+  private function setIv (): void {
+    $request = \SimFwk2\Http\Request::getInstance();
+    if (!$iv = $request->dataSession("security.iv")) {
+      $this->throw("E_MISSING_IV");
+    }
+    $this->iv = $iv;
+  }
+}
+
+/**
+ * Security exception class
+ *
+ * @author Simon Cabos
+ * @version 1.0.0
+ * @copyright 2020 Simon Cabos
+ * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
+ */
+class SecurityException extends \LogicException {
+  const E_MISSING_IV = "Failed instanciate security class : missing session `security.iv`";
 }
