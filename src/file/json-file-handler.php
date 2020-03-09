@@ -6,7 +6,7 @@ namespace SimFwk2\File;
  * Json file handler
  * 
  * @author Simon Cabos
- * @version 1.0.3
+ * @version 1.0.4
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -16,7 +16,7 @@ final class JsonFileHandler extends FileHandler {
    * Returns the content of the json file. File must be opened before.
    * @return mixed[] The decoded json file's content.
    */
-  public function read (): array {
+  public function readJson () {
     return json_decode(parent::read(), true);
   }
 
