@@ -6,7 +6,7 @@ namespace SimFwk2\File;
  * File handler
  * 
  * @author Simon Cabos
- * @version 1.1.1
+ * @version 1.1.2
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -51,7 +51,7 @@ class FileHandler {
    * Returns the content of the file. File must be opened before.
    * @return string The file's content.
    */
-  public function read (): string {
+  final public function read (): string {
     return $this->file->fread($this->file->getSize());
   }
 
@@ -60,7 +60,7 @@ class FileHandler {
    * @param string $content The content to write.
    * @param string $eol (boolean) The end of line string to use.
    */
-  public function write (string $content, string $eol = \PHP_EOL): void {
+  final public function write (string $content, string $eol = \PHP_EOL): void {
     $this->file->flock(LOCK_EX);
     $this->file->fwrite($content . $eol);
     $this->file->flock(LOCK_UN);
