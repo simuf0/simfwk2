@@ -6,7 +6,7 @@ namespace SimFwk2\File;
  * Json file handler
  * 
  * @author Simon Cabos
- * @version 1.0.4
+ * @version 1.0.5
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
