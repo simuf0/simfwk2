@@ -6,7 +6,7 @@ namespace SimFwk2\Http;
  * Http request handler
  * 
  * @author Simon Cabos
- * @version 1.1.2
+ * @version 1.1.3
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -32,7 +32,7 @@ final class Request {
   /** @var mixed[] Server and runtime variables. */
   private $server;
 
-  private function __construct () {
+  private function __construct() {
     $this->get     =& $_GET;
     $this->post    =& $_POST;
     $this->session =& $_SESSION;
@@ -45,7 +45,7 @@ final class Request {
    * Returns the current request's uri.
    * @return string Returns the request's uri.
    */
-  public static function uri (): string {
+  public static function uri(): string {
     return $_SERVER['REQUEST_URI'];
   }
 
@@ -55,7 +55,7 @@ final class Request {
    * @param string $key (optional) The name of the requested variable.
    * @return string|string[] Returns the HTTP GET variable(s).
    */
-  public function dataGet (string $key = null) {
+  public function dataGet(string $key = null) {
     return array_key_exists($key, $this->get)
            ? $this->get[$key]
            : (is_null($key) ? $this->get : null);
@@ -67,7 +67,7 @@ final class Request {
    * @param string $key (optional) The name of the requested variable.
    * @return string|string[] Returns the HTTP POST variable(s).
    */
-  public function dataPost (string $key = null) {
+  public function dataPost(string $key = null) {
     return array_key_exists($key, $this->post)
            ? $this->post[$key]
            : (is_null($key) ? $this->post : null);
@@ -79,7 +79,7 @@ final class Request {
    * @param string $key (optional) The name of the requested variable.
    * @return mixed|mixed[] Returns the session variable(s).
    */
-  public function dataSession (string $key = null) {
+  public function dataSession(string $key = null) {
     return array_key_exists($key, $this->session)
            ? $this->session[$key]
            : (is_null($key) ? $this->session : null);
@@ -91,7 +91,7 @@ final class Request {
    * @param string $key (optional) The name of the requested variable.
    * @return mixed|mixed[] Returns the file upload variable(s).
    */
-  public function dataFiles (string $key = null) {
+  public function dataFiles(string $key = null) {
     return array_key_exists($key, $this->files)
            ? $this->files[$key]
            : (is_null($key) ? $this->files : null);
@@ -103,7 +103,7 @@ final class Request {
    * @param string $key (optional) The name of the requested cookie.
    * @return string|string[] Returns the HTTP cookie(s).
    */
-  public function dataCookie (string $key = null) {
+  public function dataCookie(string $key = null) {
     return array_key_exists($key, $this->cookie)
            ? $this->cookie[$key]
            : (is_null($key) ? $this->cookie : null);
@@ -115,7 +115,7 @@ final class Request {
    * @param string $key (optional) The name of the requested variable.
    * @return mixed|mixed[] Returns the server variable(s).
    */
-  public function dataServer (string $key = null) {
+  public function dataServer(string $key = null) {
     return array_key_exists($key, $this->server)
            ? $this->server[$key]
            : (is_null($key) ? $this->server : null);
