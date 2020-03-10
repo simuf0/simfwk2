@@ -6,7 +6,7 @@ namespace SimFwk2\File;
  * File handler
  * 
  * @author Simon Cabos
- * @version 1.1.2
+ * @version 1.1.3
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -21,7 +21,7 @@ class FileHandler {
    * @param string $filename The file's path to handle.
    * @param string $mode (boolean) The type of file's access.
    */
-  public function __construct (string $filename, string $mode = "r") {
+  public function __construct(string $filename, string $mode = "r") {
     $this->open($filename, $mode);
   }
 
@@ -30,7 +30,7 @@ class FileHandler {
    * @param string $filename The file's path to test.
    * @return boolean returns TRUE if the file exists, returns FALSE otherwise.
    */
-  final public static function exists (string $filename) : bool {
+  final public static function exists(string $filename) : bool {
     return is_file($filename);
   }
 
@@ -40,7 +40,7 @@ class FileHandler {
    * @param string $mode (boolean) The type of file's access.
    * @throws SimFwk2\File\FileHandlerException When the file is missing.
    */
-  final public function open (string $filename, string $mode = "r"): void {
+  final public function open(string $filename, string $mode = "r"): void {
     if (!self::exists($filename)) {
       $this->throw("E_MISSING_FILE", $filename);
     }
@@ -51,7 +51,7 @@ class FileHandler {
    * Returns the content of the file. File must be opened before.
    * @return string The file's content.
    */
-  final public function read (): string {
+  final public function read(): string {
     return $this->file->fread($this->file->getSize());
   }
 
@@ -60,7 +60,7 @@ class FileHandler {
    * @param string $content The content to write.
    * @param string $eol (boolean) The end of line string to use.
    */
-  final public function write (string $content, string $eol = \PHP_EOL): void {
+  final public function write(string $content, string $eol = \PHP_EOL): void {
     $this->file->flock(LOCK_EX);
     $this->file->fwrite($content . $eol);
     $this->file->flock(LOCK_UN);
@@ -69,7 +69,7 @@ class FileHandler {
   /**
    * Close the current opened file.
    */
-  final public function close (): void {
+  final public function close(): void {
     $this->file = null;
   }
 }
