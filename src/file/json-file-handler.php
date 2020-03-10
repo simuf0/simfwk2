@@ -16,7 +16,7 @@ final class JsonFileHandler extends FileHandler {
    * Returns the content of the json file. File must be opened before.
    * @return mixed[] The decoded json file's content.
    */
-  public function readJson () {
+  public function readJson() {
     return json_decode(parent::read(), true);
   }
 
@@ -24,7 +24,7 @@ final class JsonFileHandler extends FileHandler {
    * Write content into a json file.
    * @param mixed $content The json's content to write.
    */
-  public function writeJson ($content): void {
+  public function writeJson($content): void {
     parent::write(json_encode($content));
   }
 }
