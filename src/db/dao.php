@@ -6,7 +6,7 @@ namespace SimFwk2\Db;
  * Database access object.
  * 
  * @author Simon Cabos
- * @version 1.1.0
+ * @version 1.1.1
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -46,6 +46,7 @@ abstract class Dao extends \SimFwk2\Core\ApplicationComponent {
   /**
    * Load and return a model.
    * @param string[] $data The raw data to hydrate the model.
+   * @throws \SimFwk2\Db\DaoException When model is missing.
    */
   protected function loadModel (array $data) {
     $f = \SimFwk2\Utils\Formatter::getInstance();
