@@ -6,7 +6,7 @@ namespace SimFwk2\Utils;
  * String formatting handler
  * 
  * @author Simon Cabos
- * @version 1.1.2
+ * @version 1.1.3
  * @copyright 2020 Simon Cabos
  * @licence GPL - http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -19,7 +19,7 @@ final class Formatter {
    * @param string $str The string to format.
    * @return string The formatted string.
    */
-  final public function toClassName(string $str): string {
+  public function toClassName(string $str): string {
     $flag = false;
     $newStr = "";
     $str = trim(preg_replace("/[^\w]/", " ", $str));
@@ -43,7 +43,7 @@ final class Formatter {
    * @param string $str The string to format.
    * @return string The formatted string.
    */
-  final public function toMethodName(string $str): string {
+  public function toMethodName(string $str): string {
     return lcfirst(self::toClassName($str));
   }
 
@@ -53,7 +53,7 @@ final class Formatter {
    * @param string $separator (optional) The character to use for separate words.
    * @return string The formatted string.
    */
-  final public function toFilename(
+  public function toFilename(
     string $str,
     string $separator = "-"
   ): string {
@@ -62,6 +62,9 @@ final class Formatter {
     for ($i = 0; $i < strlen($str); $i++) {
       if (!($str[$i] == "-" && $str[$i + 1] == "-")) {
         $newStr .= $str[$i];
+      }
+      if (isset($str[$i + 1]) && ctype_upper($str[$i + 1])) {
+        $newStr .= $separator;
       }
     }
     return strtolower($newStr);
